@@ -10,7 +10,9 @@ config = dotenv.dotenv_values('.env')
 
 env = Environment(
     loader=FileSystemLoader('.'),
-    autoescape=select_autoescape(['html'])
+    autoescape=select_autoescape(['html']),
+    trim_blocks=True,
+    lstrip_blocks=True
 )
 
 template = env.get_template('template.html')
