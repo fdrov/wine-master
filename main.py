@@ -3,9 +3,11 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 import pandas as pd
 import collections
-import dotenv
+import argparse
 
-config = dotenv.dotenv_values('.env')
+parser = argparse.ArgumentParser(description='Для запуска сайта винодельни введите путь до файла-каталога вина как аргумент')
+parser.add_argument('path', help='Введите путь до файла-каталога вин:')
+args = parser.parse_args()
 
 
 env = Environment(
@@ -17,7 +19,7 @@ env = Environment(
 
 template = env.get_template('template.html')
 
-# вычисляем возраст винодельни
+
 today = datetime.date.today().year
 foundation_year = 1920
 company_age = today - foundation_year
@@ -29,8 +31,8 @@ elif last_digit in (2, 3, 4) and (company_age < 12 or company_age > 19):
 else:
     company_age_years = f'{company_age} лет'
 
-# получаем вина по сортам их файла каталога
-wines = pd.read_excel(config['PATH_TO_EXCEL'], keep_default_na=False).to_dict(orient='records')
+
+wines = pd.read_excel(args.path, keep_default_na=False).to_dict(orient='records')
 wine_assortment = collections.defaultdict(list)
 for bottle in wines:
     wine_assortment[bottle['Категория']].append(bottle)
