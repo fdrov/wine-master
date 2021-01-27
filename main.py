@@ -3,6 +3,9 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 import pandas as pd
 import collections
+import dotenv
+
+config = dotenv.dotenv_values('.env')
 
 
 env = Environment(
@@ -26,7 +29,7 @@ else:
     company_age_years = f'{company_age} лет'
 
 # получаем вина по сортам их файла wine2
-wine_data_frame = pd.read_excel(r".\wine3.xlsx", keep_default_na=False)
+wine_data_frame = pd.read_excel(config['PATH_TO_EXCEL'], keep_default_na=False)
 wine_dict = wine_data_frame.to_dict(orient='records')
 
 # форматируем словарь в список словарей для использования в template.html
