@@ -132,7 +132,7 @@
                   <div>
                     <h3 class="heading mt-3 mb-3 text-dark">{{bottle['Название']}}</h3>
                     <p>
-                      {% if sort != 'Напитки'  %}
+                      {% if bottle.Сорт  %}
                         Сорт винограда - {{bottle.Сорт}}<br/>
                       {% endif %}
                       <span class="price">{{bottle.Цена}}</span>
