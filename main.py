@@ -1,6 +1,6 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from datetime import datetime
+import datetime
 import pandas as pd
 import collections
 
@@ -12,8 +12,10 @@ env = Environment(
 
 template = env.get_template('template.html')
 
-# вычисляме количество лет со дня открытия винодельни
-company_age = ((datetime.today() - datetime(year=1920, month=12, day=31)).days) // 365
+# вычисляем возраст винодельни
+today = datetime.date.today().year
+foundation_year = 1920
+company_age = today - foundation_year
 
 # получаем вина по сортам их файла wine2
 wine_data_frame = pd.read_excel(r".\wine3.xlsx", keep_default_na=False)
