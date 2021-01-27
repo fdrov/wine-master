@@ -21,7 +21,6 @@ template = env.get_template('template.html')
 today = datetime.date.today().year
 foundation_year = 1920
 company_age = today - foundation_year
-
 last_digit = company_age % 10
 if last_digit == 1 and company_age != 11:
     company_age_years = f'{company_age} год'
