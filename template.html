@@ -115,7 +115,7 @@
         </div>
         {% for sort, bottles in wines.items() %}
           <div class="col-12 section-title text-center mb-5">
-              <h2 class="d-block">{{ sort }}</h2>
+              <h2 class="d-block">{{sort}}</h2>
           </div>
           <div class="row">
             {% for bottle in bottles %}
@@ -126,11 +126,11 @@
                   {% else %}
                     <img src="https://dvmn.org/filer/canonical/1569944855/354/" alt="Image" class="img-fluid">
                   {% endif %}
-                  {% if bottle['Акция'] %}
+                  {% if bottle.Акция %}
                     <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                   {% endif %}
                   <div>
-                    <h3 class="heading mt-3 mb-3 text-dark">{{bottle['Название']}}</h3>
+                    <h3 class="heading mt-3 mb-3 text-dark">{{bottle.Название}}</h3>
                     <p>
                       {% if bottle.Сорт  %}
                         Сорт винограда - {{bottle.Сорт}}<br/>
