@@ -3,12 +3,12 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 import pandas as pd
 import collections
-# import argparse
-#
-# parser = argparse.ArgumentParser(description='Для запуска сайта винодельни введите путь до файла-каталога вина как аргумент')
-# parser.add_argument('path', help='Введите путь до файла-каталога вин:')
-# args = parser.parse_args()
-path = 'wine_example.xlsx'
+import argparse
+
+parser = argparse.ArgumentParser(description='Для запуска сайта винодельни введите путь до файла-каталога вина как аргумент')
+parser.add_argument('path', help='Введите путь до файла-каталога вин:')
+args = parser.parse_args()
+
 
 env = Environment(
     loader=FileSystemLoader('.'),
@@ -32,7 +32,7 @@ else:
     company_age_years = f'{company_age} лет'
 
 
-wines = pd.read_excel(path, keep_default_na=False).to_dict(orient='records')
+wines = pd.read_excel(args.path, keep_default_na=False).to_dict(orient='records')
 wine_assortment = collections.defaultdict(list)
 for bottle in wines:
     wine_assortment[bottle['Категория']].append(bottle)
